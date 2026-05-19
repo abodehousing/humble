@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>AbodeSLO | Cal Poly Housing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#F6F1E9;
+  --card:#FFFFFF;
+  --cream:#FBF8F2;
+  --line:rgba(39,36,28,.09);
+  --line-dark:rgba(39,36,28,.16);
+  --green:#0F3D2C;
+  --green-2:#184C37;
+  --green-soft:#E7F1E8;
+  --orange:#D97957;
+  --orange-2:#E99072;
+  --orange-soft:#F7E5D9;
+  --gold:#C18A24;
+  --txt:#1D2119;
+  --sub:#78756D;
+  --muted:#B9B0A4;
+  --shadow:0 10px 26px rgba(41,32,22,.08);
+  --shadow-soft:0 6px 16px rgba(41,32,22,.06);
+}
+html,body{height:100%;background:#DED4C8;font-family:Lato,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--txt)}
+body{display:flex;align-items:center;justify-content:center;min-height:100svh;overflow:hidden}
+.app{width:min(100vw,390px);height:min(100svh,844px);background:var(--bg);position:relative;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.18)}
+@media(max-width:430px){body{display:block;background:var(--bg)}.app{width:100vw;height:100svh;box-shadow:none}}
+.status{height:36px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 22px 8px;font-size:12px;font-weight:900;color:#080806;background:var(--bg);position:relative;z-index:20}
+.notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:126px;height:25px;background:#000;border-radius:0 0 16px 16px}
+.status-icons{display:flex;gap:5px;align-items:center;font-size:13px}
+.screen{position:absolute;inset:36px 0 67px;background:var(--bg);display:none;overflow-y:auto;scrollbar-width:none;padding-bottom:18px}
+.screen::-webkit-scrollbar{display:none}
+.screen.active{display:block}
+.nav{position:absolute;left:0;right:0;bottom:0;height:67px;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);border-top:1px solid var(--line);display:flex;z-index:50;padding:6px 8px 9px}
+.nav-btn{appearance:none;border:0;background:transparent;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#A7A49D;font-family:Lato,sans-serif;font-size:9px;font-weight:700;cursor:pointer}
+.nav-btn i{font-size:18px;line-height:1}
+.nav-btn.active{color:var(--green)}
+button,a,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.page-pad{padding:0 18px}.topbar{display:flex;align-items:center;justify-content:space-between;padding:13px 18px 7px}.topbar.tight{padding-bottom:2px}.brand-mark{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--green);font-weight:700;margin-bottom:0}.brand-mark i{font-size:17px}.title{font-family:"Playfair Display",serif;font-size:26px;font-weight:600;letter-spacing:-.8px;color:#151A12;line-height:1.05}.small-title{font-family:"Playfair Display",serif;font-size:22px;font-weight:600;letter-spacing:-.5px;color:#172014;line-height:1.05}.avatar{width:38px;height:38px;border-radius:50%;overflow:hidden;border:2px solid #fff;box-shadow:var(--shadow-soft);background:#D8C9BA}.avatar img{width:100%;height:100%;object-fit:cover}.circle-btn{width:34px;height:34px;border-radius:50%;border:0;background:var(--green);color:#fff;display:grid;place-items:center;box-shadow:var(--shadow-soft)}.circle-btn.soft{background:var(--card);color:var(--green);border:1px solid var(--line)}.circle-btn.orange{background:var(--orange-soft);color:var(--orange)}
+.search-row{display:flex;align-items:center;gap:10px;padding:4px 18px 11px}.search{height:36px;flex:1;background:rgba(255,255,255,.86);border:1px solid var(--line);border-radius:22px;display:flex;align-items:center;gap:7px;padding:0 13px;box-shadow:0 4px 11px rgba(30,25,15,.03)}.search i{color:#D3CDC5;font-size:16px}.search input{border:0;outline:0;background:transparent;width:100%;font-size:11px;color:var(--txt)}.search input::placeholder{color:#D7D1C8}.filter-round{width:42px;height:42px;border-radius:50%;border:0;background:var(--green);color:#fff;display:grid;place-items:center;box-shadow:var(--shadow-soft)}.filter-round i{font-size:20px}.quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;padding:0 18px 10px}.quick-card{min-height:74px;background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-soft);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;color:var(--txt)}.quick-icon{width:30px;height:30px;border-radius:50%;background:var(--orange-soft);display:grid;place-items:center;color:var(--orange)}.quick-icon i{font-size:17px}.quick-card span{font-size:9px;font-weight:900;text-align:center;line-height:1.1;max-width:70px}.section-title{font-size:13px;font-weight:700;padding:0 18px 8px}.section-row{display:flex;align-items:center;justify-content:space-between;padding:0 18px 8px}.see-all{font-size:10px;color:var(--orange);font-weight:900;text-decoration:none}.chips{display:flex;gap:8px;overflow:auto;scrollbar-width:none;padding:0 18px 10px}.chips::-webkit-scrollbar{display:none}.chip{border:0;border-radius:999px;background:#fff;color:#9A9288;font-size:10px;font-weight:900;padding:6px 13px;white-space:nowrap;box-shadow:0 3px 8px rgba(20,20,20,.04)}.chip.active{background:var(--green);color:#fff}.chip.green-soft{background:var(--green-soft);color:var(--green)}.chip.outline{border:1px solid var(--line-dark);box-shadow:none;background:transparent;color:var(--sub)}
+.home-feed{padding:0 18px}.home-card{background:#fff;border:1px solid var(--line);border-radius:19px;overflow:hidden;box-shadow:var(--shadow-soft);margin-bottom:14px}.hero-img{height:142px;background-size:cover;background-position:center;position:relative}.hero-img:after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.02),rgba(0,0,0,.08))}.heart{position:absolute;top:10px;right:10px;z-index:2;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.83);border:1px solid rgba(255,255,255,.7);color:#AAB5A8}.heart.saved{color:var(--orange);background:#fff}.home-card-body{padding:10px 12px 12px}.listing-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.listing-name{font-size:14px;font-weight:500;font-family:"Playfair Display",serif;color:#171B14}.price{font-size:13px;font-weight:700;color:#20251E;text-align:right;white-space:nowrap}.price span{display:block;font-size:9px;font-weight:400;color:var(--sub);margin-top:1px}.meta{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--sub);margin-top:2px}.meta i{font-size:12px;color:#99A396}.badges{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:7px}.verified{display:inline-flex;align-items:center;gap:4px;padding:3px 7px;border-radius:4px;background:var(--green-soft);color:var(--green-2);font-size:9px;font-weight:900;border:1px solid #BBD5BE}.verified i{font-size:11px}.linkish{font-size:9px;color:#537252;text-decoration:underline;background:none;border:0}.actions{display:flex;align-items:center;gap:8px;margin-top:9px}.view-more{margin-left:auto;background:var(--orange);color:#fff;border:0;border-radius:9px;font-size:10px;font-weight:900;padding:9px 15px;box-shadow:0 4px 10px rgba(217,121,87,.20)}.ghost-mini{background:#fff;color:var(--green);border:1px solid var(--line);border-radius:9px;font-size:10px;font-weight:900;padding:8px 12px}.notice{margin:0 18px 12px;background:rgba(255,255,255,.72);border:1px solid var(--line);border-radius:13px;padding:9px 11px;font-size:10px;color:var(--sub);line-height:1.4}.toast{position:absolute;left:50%;bottom:80px;transform:translateX(-50%) translateY(20px);background:#111;color:#fff;border-radius:999px;padding:10px 14px;font-size:11px;font-weight:700;z-index:100;opacity:0;pointer-events:none;transition:.25s ease}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.header-line{border-bottom:1px solid var(--line);padding-bottom:8px}.back-title{display:flex;align-items:center;gap:9px;padding:13px 18px 9px}.back-title .small-title{font-size:21px}.explore-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:0 18px 14px}.grid-card{background:#fff;border:1px solid var(--line);border-radius:15px;overflow:hidden;box-shadow:var(--shadow-soft);position:relative}.grid-img{height:104px;background-size:cover;background-position:center;position:relative}.grid-img .heart{top:7px;right:7px;width:24px;height:24px}.grid-body{padding:8px}.grid-price{font-size:12px;font-weight:900;line-height:1}.grid-price span{font-size:8px;font-weight:400;color:var(--sub)}.grid-name{font-size:10px;font-weight:900;margin-top:4px;line-height:1.15}.grid-meta{font-size:9px;color:var(--sub);margin-top:3px;line-height:1.3}.grid-card .verified{font-size:8px;padding:2px 6px;margin-top:6px}.result-count{font-size:10px;color:var(--sub);padding:0 18px 10px}.empty-state{display:none;margin:18px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px 18px;text-align:center;box-shadow:var(--shadow-soft)}.empty-state i{font-size:34px;color:var(--orange);margin-bottom:8px}.empty-state h3{font-size:15px;margin-bottom:4px}.empty-state p{font-size:11px;color:var(--sub);line-height:1.45;margin-bottom:12px}.form{padding:0 18px 20px}.form-card{background:rgba(255,255,255,.65);border:1px solid var(--line);border-radius:18px;padding:13px;box-shadow:var(--shadow-soft);margin-bottom:12px}.label{font-size:10px;font-weight:900;color:#302A21;margin:10px 0 6px}.field,.select,textarea{width:100%;border:1px solid var(--line);background:#fff;border-radius:12px;min-height:37px;padding:0 12px;font-size:11px;color:var(--txt);outline:none}textarea{padding:11px 12px;min-height:72px;resize:none}.toggle-row,.pill-row{display:flex;gap:8px;flex-wrap:wrap}.pill{border:0;border-radius:999px;background:#fff;color:var(--sub);font-size:10px;font-weight:900;padding:7px 12px}.pill.active{background:var(--green);color:#fff}.slider{width:100%;accent-color:var(--green);margin:4px 0}.slider-labels{display:flex;justify-content:space-between;font-size:9px;color:var(--sub)}.wide-btn{width:100%;border:0;border-radius:13px;min-height:42px;font-size:11px;font-weight:900;margin-top:10px}.wide-btn.green{background:var(--green);color:#fff}.wide-btn.orange{background:var(--orange);color:#fff}.wide-btn.outline{background:#fff;color:var(--orange);border:1px solid var(--orange-soft)}.hint{font-size:10px;color:var(--sub);line-height:1.4;margin-top:6px}.detail-img{height:232px;background-size:cover;background-position:center;position:relative}.detail-img .back-floating{position:absolute;top:12px;left:14px;z-index:5}.detail-img .heart{width:34px;height:34px;top:12px;right:14px}.detail-panel{margin:-18px 0 0;background:var(--bg);border-radius:24px 24px 0 0;position:relative;z-index:3;padding:18px}.detail-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:13px;margin-top:12px;box-shadow:var(--shadow-soft)}.detail-card h3{font-size:13px;margin-bottom:5px}.detail-card p{font-size:11px;color:var(--sub);line-height:1.5}.two-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}.message-box{display:none;background:#fff;border:1px solid var(--line);border-radius:18px;padding:13px;margin-top:12px;box-shadow:var(--shadow-soft)}.message-box.show{display:block}.bubble{max-width:83%;padding:10px 12px;border-radius:16px;font-size:11px;line-height:1.45;margin-bottom:8px}.bubble.them{background:#F2EEE8;color:var(--txt)}.bubble.me{background:var(--green);color:#fff;margin-left:auto}.typing{font-size:10px;color:var(--sub);margin-top:4px}.fav-list{padding:0 18px 12px}.photo-stack{display:grid;gap:9px}.photo-strip{height:86px;border-radius:16px;background-size:cover;background-position:center;box-shadow:var(--shadow-soft);position:relative;overflow:hidden}.photo-strip .heart{top:8px;right:8px}.lease-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:13px;box-shadow:var(--shadow-soft);margin:13px 0}.file-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}.file-icon{width:38px;height:38px;border-radius:11px;background:var(--orange-soft);color:var(--orange);display:grid;place-items:center}.file-title{font-size:12px;font-weight:900}.file-sub{font-size:9px;color:var(--sub)}.sign-box{background:#F8F4ED;border:1px solid var(--line);border-radius:15px;padding:12px;margin-top:10px}.signature{background:#fff;border:1px dashed var(--line-dark);border-radius:12px;height:56px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:"Playfair Display",serif;font-size:18px;margin-top:8px}.empty-favs{display:none;text-align:center;padding:55px 30px;color:var(--sub)}.empty-favs i{font-size:42px;color:#D6CCC0;margin-bottom:10px}.empty-favs h3{font-size:15px;color:var(--txt);margin-bottom:5px}.rm-banner{margin:0 18px 11px;background:var(--orange-soft);border:1px solid #F0D3C3;border-radius:16px;padding:12px;display:flex;align-items:center;gap:12px}.rm-banner h3{font-size:12px;margin-bottom:3px}.rm-banner p{font-size:10px;color:#805440;line-height:1.3}.rm-banner button{margin-left:auto;width:30px;height:30px;border-radius:50%;border:0;background:var(--green);color:#fff}.room-card{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-soft);padding:13px;margin:0 18px 12px}.room-top{display:flex;gap:11px;align-items:flex-start}.initial{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:900;flex-shrink:0}.room-info{flex:1}.room-name{font-size:13px;font-weight:900}.room-sub{font-size:10px;color:var(--sub);margin-top:2px}.room-price{font-size:10px;color:var(--green);font-weight:900}.room-bio{font-size:10px;color:var(--sub);line-height:1.45;margin:8px 0}.connect{background:var(--orange);color:#fff;border:0;border-radius:999px;padding:7px 20px;font-size:10px;font-weight:900}.connect.sent{background:var(--green)}.forum-card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:11px;margin-top:8px}.forum-card h4{font-size:11px}.forum-card p{font-size:10px;color:var(--sub);margin-top:3px}.profile-card{margin:0 18px 13px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;display:flex;align-items:center;gap:11px;box-shadow:var(--shadow-soft)}.profile-badge{width:43px;height:43px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:900}.menu-group{padding:0 18px 13px}.menu-label{font-size:9px;color:var(--sub);font-weight:900;letter-spacing:.04em;text-transform:uppercase;margin:8px 0}.menu-list{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-soft)}.menu-item{display:flex;align-items:center;justify-content:space-between;padding:13px;border-bottom:1px solid var(--line);background:#fff}.menu-item:last-child{border-bottom:0}.menu-left{display:flex;align-items:center;gap:10px}.menu-ico{width:31px;height:31px;border-radius:10px;background:var(--orange-soft);color:var(--orange);display:grid;place-items:center}.menu-name{font-size:12px;font-weight:900}.menu-desc{font-size:9px;color:var(--sub);margin-top:2px}.sublease-card{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-soft);padding:13px;margin:0 18px 12px}.sublease-card h3{font-size:13px;margin-bottom:4px}.sublease-card p{font-size:10px;color:var(--sub);line-height:1.45}.saved-alert{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;margin:0 18px 10px}.saved-alert h4{font-size:12px}.saved-alert p{font-size:9px;color:var(--sub);margin-top:2px}.switch{width:43px;height:24px;border-radius:999px;background:var(--green);position:relative}.switch:after{content:"";position:absolute;width:18px;height:18px;right:3px;top:3px;background:#fff;border-radius:50%}.hide{display:none!important}
+
+
+/* Mobile web polish: use the real phone browser chrome instead of a fake phone frame/status bar. */
+.status,.notch{display:none!important;}
+body{background:var(--bg);overflow:hidden;}
+.app{width:100%;max-width:430px;height:100dvh;min-height:100dvh;border-radius:0;}
+.screen{inset:0 0 calc(67px + env(safe-area-inset-bottom)) 0;padding-bottom:calc(18px + env(safe-area-inset-bottom));}
+.nav{height:calc(67px + env(safe-area-inset-bottom));padding-bottom:calc(9px + env(safe-area-inset-bottom));}
+.detail-img{height:clamp(188px,34dvh,260px);}
+.detail-panel{padding:clamp(14px,4vw,18px);}
+.detail-panel .small-title{font-size:clamp(21px,7vw,28px);line-height:1.02;}
+.detail-card{border-radius:16px;}
+@media (max-width:900px){
+  html,body{width:100%;height:100%;background:var(--bg);}
+  body{display:block;min-height:100dvh;}
+  .app{width:100vw;max-width:none;height:100dvh;min-height:100dvh;box-shadow:none;}
+}
+@media (max-width:360px){
+  .page-pad,.home-feed,.quick-grid,.search-row,.chips,.section-title,.section-row,.explore-grid,.form,.fav-list,.menu-group{padding-left:14px!important;padding-right:14px!important;}
+  .quick-grid{gap:7px;}
+  .quick-card{min-height:68px;border-radius:14px;}
+  .explore-grid{gap:8px;}
+  .grid-img{height:92px;}
+  .listing-head{gap:6px;}
+  .price{font-size:12px;}
+  .two-actions{grid-template-columns:1fr;}
+  .detail-img{height:190px;}
+}
+
+</style>
+</head>
+<body>
+<main class="app" id="app">
+  <div class="status"><div class="notch"></div><span>9:41</span><div class="status-icons"><i class="ti ti-antenna-bars-5"></i><i class="ti ti-wifi"></i><i class="ti ti-battery-4"></i></div></div>
+
+  <section class="screen active" id="screen-home" aria-label="Dashboard">
+    <div class="topbar">
+      <div>
+        <div class="brand-mark"><i class="ti ti-home-2"></i><span>Abode</span></div>
+        <h1 class="title">Dashboard</h1>
+      </div>
+      <button class="avatar" onclick="go('profile')" aria-label="Open profile"><img alt="Student profile" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80"></button>
+    </div>
+    <div class="search-row"><label class="search"><i class="ti ti-search"></i><input id="homeSearch" oninput="renderHome()" placeholder="Find Your Dream Property" /></label><button class="filter-round" onclick="go('rental')" aria-label="Open filters"><i class="ti ti-adjustments-horizontal"></i></button></div>
+    <div class="quick-grid">
+      <button class="quick-card" onclick="go('rental')"><span class="quick-icon"><i class="ti ti-building-bank"></i></span><span>Rental<br>Search</span></button>
+      <button class="quick-card" onclick="go('roommate-search')"><span class="quick-icon"><i class="ti ti-users"></i></span><span>Roommate<br>Search</span></button>
+      <button class="quick-card" onclick="go('sublease')"><span class="quick-icon"><i class="ti ti-arrows-exchange"></i></span><span>Sublease<br>Portal</span></button>
+      <button class="quick-card" onclick="go('favorites')"><span class="quick-icon"><i class="ti ti-bookmark"></i></span><span>Saved<br>Properties</span></button>
+      <button class="quick-card" onclick="go('forum')"><span class="quick-icon"><i class="ti ti-message-circle"></i></span><span>Housing<br>Forum</span></button>
+      <button class="quick-card" onclick="go('favorites')"><span class="quick-icon"><i class="ti ti-file-pencil"></i></span><span>Sign<br>Lease</span></button>
+    </div>
+    <div class="section-title">Recommended For You</div>
+    <div class="chips" id="homeChips">
+      <button class="chip active" onclick="setHomeFilter('all',this)">Near Campus</button>
+      <button class="chip" onclick="setHomeFilter('under4k',this)">Under $4k</button>
+      <button class="chip" onclick="setHomeFilter('threePlus',this)">3+ Bed</button>
+      <button class="chip" onclick="setHomeFilter('fall',this)">Fall 2026</button>
+    </div>
+    <div class="home-feed" id="homeFeed"></div>
+  </section>
+
+  <section class="screen" id="screen-explore" aria-label="Explore">
+    <div class="back-title header-line"><button class="circle-btn soft" onclick="go('home')" aria-label="Back"><i class="ti ti-chevron-left"></i></button><h1 class="small-title">Explore</h1></div>
+    <div class="search-row"><label class="search"><i class="ti ti-search"></i><input id="exploreSearch" oninput="renderExplore()" placeholder="Search near Cal Poly..." /></label><button class="filter-round" onclick="go('rental')"><i class="ti ti-adjustments-horizontal"></i></button></div>
+    <div class="chips" id="exploreChips">
+      <button class="chip active" onclick="setExploreFilter('all',this)">All</button>
+      <button class="chip" onclick="setExploreFilter('near',this)">Near Campus</button>
+      <button class="chip" onclick="setExploreFilter('pet',this)">Pet Friendly</button>
+      <button class="chip" onclick="setExploreFilter('furnished',this)">Furnished</button>
+      <button class="chip" onclick="setExploreFilter('parking',this)">Parking</button>
+    </div>
+    <div class="result-count"><span id="exploreCount">0</span> results near Cal Poly</div>
+    <div class="explore-grid" id="exploreGrid"></div>
+    <div class="empty-state" id="exploreEmpty"><i class="ti ti-home-search"></i><h3>No matches yet</h3><p>Try relaxing your filters or save this search to get notified when a match appears.</p><button class="wide-btn orange" onclick="toast('Search saved. You will get alerts for new matches.')">Save Search & Get Alerts</button></div>
+  </section>
+
+  <section class="screen" id="screen-rental" aria-label="Rental Search">
+    <div class="back-title header-line"><button class="circle-btn soft" onclick="go('home')"><i class="ti ti-chevron-left"></i></button><h1 class="small-title">Rental Search</h1></div>
+    <div class="form">
+      <p class="hint" style="margin:2px 0 11px">Tell us what you are looking for and we will narrow down the best matches near Cal Poly.</p>
+      <div class="form-card">
+        <div class="label">Lease Term</div><div class="toggle-row"><button class="pill">6 months</button><button class="pill active">12 months</button></div>
+        <div class="label">Unit Type</div><input class="field" id="unitType" value="2BR" aria-label="Unit type">
+        <div class="label">Location</div><input class="field" id="locationField" value="Near Cal Poly / Foothill" aria-label="Location">
+        <div class="label">Are you a student?</div><div class="toggle-row"><button class="pill active">Yes</button><button class="pill">No</button></div>
+        <div class="label">Distance from Cal Poly campus</div><input class="slider" id="distanceRange" type="range" min="0" max="5" step=".5" value="1.5" oninput="document.getElementById('distanceLabel').textContent=this.value+' mi'"><div class="slider-labels"><span>0 mi</span><strong id="distanceLabel">1.5 mi</strong><span>5 mi</span></div>
+        <div class="label">Amenities</div><div class="pill-row"><button class="pill">Pool</button><button class="pill">Gym</button><button class="pill active">Parking</button><button class="pill">AC</button><button class="pill">Pet Friendly</button></div>
+      </div>
+      <button class="wide-btn outline" onclick="toast('Search saved. We will notify you when new matches are posted.')"><i class="ti ti-bell"></i> Save Search & Get Alerts</button>
+      <button class="wide-btn green" onclick="applyRentalSearch()">Search Properties</button>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-detail" aria-label="Listing Detail">
+    <div class="detail-img" id="detailImg"><button class="circle-btn soft back-floating" onclick="go(lastListScreen)"><i class="ti ti-chevron-left"></i></button><button class="heart" id="detailHeart" onclick="toggleSave(currentDetailId)"><i class="ti ti-heart"></i></button></div>
+    <div class="detail-panel">
+      <div class="listing-head"><div><h1 class="small-title" id="detailName">Listing</h1><div class="meta"><i class="ti ti-map-pin"></i><span id="detailAddress"></span></div><div class="meta"><i class="ti ti-walk"></i><span id="detailDistance"></span></div></div><div class="price" id="detailPrice"></div></div>
+      <div class="badges"><span class="verified"><i class="ti ti-check"></i>Verified listing</span><button class="linkish" onclick="toast('Verified means landlord ID confirmed, address matched, and lease terms reviewed.')">What does verified mean?</button></div>
+      <div class="detail-card"><h3>About this place</h3><p id="detailDesc"></p></div>
+      <div class="detail-card"><h3>Landlord activity</h3><p><strong>Typically responds within 24 hours.</strong> This was added because students wanted to know if messaging was worth their time.</p></div>
+      <div class="two-actions"><button class="wide-btn orange" onclick="showMessageBox()">Message Landlord</button><button class="wide-btn green" onclick="toggleSave(currentDetailId)">Save Property</button></div>
+      <div class="message-box" id="messageBox"><div class="bubble them">Hi, thanks for your interest. What questions do you have about the lease?</div><div class="bubble me">Hi! Is this still available for Fall 2026?</div><div class="typing"><i class="ti ti-pencil"></i> Landlord is typing...</div></div>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-favorites" aria-label="Favorites">
+    <div class="back-title header-line"><button class="circle-btn soft" onclick="go('home')"><i class="ti ti-chevron-left"></i></button><h1 class="small-title">Favorites</h1><button class="circle-btn orange" onclick="toast('Lease folder opened')"><i class="ti ti-folder"></i></button></div>
+    <div class="fav-list" id="favoritesList"></div>
+    <div class="empty-favs" id="emptyFavs"><i class="ti ti-heart"></i><h3>No saved properties yet</h3><p>Tap the heart on a listing to save it here.</p></div>
+    <div class="fav-list" id="leaseSection">
+      <div class="lease-card">
+        <div class="file-row"><div class="file-icon"><i class="ti ti-file-text"></i></div><div><div class="file-title">Lease_Agreement_v1.pdf</div><div class="file-sub">Uploaded 2 days ago</div></div></div>
+        <div class="two-actions"><button class="ghost-mini" onclick="toast('Share link copied')"><i class="ti ti-share"></i> Share to Roommate</button><button class="ghost-mini" onclick="toast('Download started')"><i class="ti ti-download"></i> Download</button></div>
+        <div class="sign-box"><div class="file-title">Sign Lease</div><div class="file-sub">Review before submitting to landlord</div><div class="signature" id="signatureBox" onclick="signLease()">Tap to Sign Your Name</div><button class="wide-btn orange" onclick="finalizeLease()">Finalize & Submit Lease</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-roommate" aria-label="Roommate Match">
+    <div class="back-title header-line"><button class="circle-btn soft" onclick="go('home')"><i class="ti ti-chevron-left"></i></button><h1 class="small-title">Roommate Match</h1></div>
+    <div class="rm-banner"><div><h3>Complete your profile</h3><p>Get better matches in under 2 minutes.</p></div><button onclick="go('roommate-search')"><i class="ti ti-chevron-right"></i></button></div>
+    <div class="chips"><button class="chip active">Pet Friendly</button><button class="chip">Non-Smoker</button><button class="chip green-soft">Student</button><button class="chip">Early Riser</button></div>
+    <div id="roommateCards"></div>
+  </section>
+
+  <section class="screen" id="screen-roommate-search" aria-label="Roommate Search">
+    <div class="back-title header-line"><button class="circle-btn soft" onclick="go('roommate')"><i class="ti ti-chevron-left"></i></button><h1 class="small-title">Roommate Search</h1></div>
+    <div class="form">
+      <div class="form-card">
+        <div class="label">Gender preference</div><div class="pill-row"><button class="pill">Female</button><button class="pill active">No preference</button><button class="pill">Male</button></div>
+        <div class="label">Co-ed Preference</div><div class="pill-row"><button class="pill active">Yes</button><button class="pill">No</button><button class="pill">No Preference</button></div>
+        <div class="label">Hobbies</div><input class="field" value="hiking, cooking" aria-label="Hobbies">
+        <div class="label">Introvert / Extrovert</div><input class="slider" type="range" min="1" max="10" value="7"><div class="slider-labels"><span>Introvert</span><span>Extrovert</span></div>
+        <div class="label">Additional Info</div><textarea aria-label="Additional info">Clean, respectful, and looking for people who study during the week.</textarea>
+        <button class="wide-btn orange" onclick="saveProfile()">Save Profile</button>
+      </div>
+      <div class="section-row" style="padding:0 0 8px"><div class="section-title" style="padding:0">Good matches for your preferences</div></div>
+      <div class="forum-card"><h4>Jamie J. <span style="float:right;color:var(--green)">90% match</span></h4><p>Business major. Clean, social, and looking near Foothill.</p></div>
+      <div class="forum-card"><h4>Riley T. <span style="float:right;color:var(--green)">86% match</span></h4><p>Early riser, non-smoker, and pet friendly.</p></div>
+      <div class="section-row" style="padding:13px 0 8px"><div class="section-title" style="padding:0">Housing Forum</div><button class="see-all" onclick="go('forum')">View all</button></div>
+      <div class="forum-card"><h4>Best sublease apps for summer?</h4><p>3 replies - posted today</p></div>
+      <div class="forum-card"><h4>Roommate not paying utilities - advice?</h4><p>7 replies - active now</p></div>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-profile" aria-label="More">
+    <div class="back-title header-line"><button class="circle-btn soft" onclick="go('home')"><i class="ti ti-chevron-left"></i></button><h1 class="small-title">More</h1></div>
+    <div class="profile-card"><div class="profile-badge">CP</div><div><div class="room-name">Cal Poly Student</div><div class="room-sub">student@calpoly.edu</div></div><i class="ti ti-chevron-right" style="margin-left:auto;color:var(--muted)"></i></div>
+    <div class="menu-group"><div class="menu-label">Account</div><div class="menu-list">
+      <button class="menu-item" onclick="go('sublease')"><span class="menu-left"><span class="menu-ico"><i class="ti ti-arrows-exchange"></i></span><span><span class="menu-name">Sublease Portal</span><span class="menu-desc">Post and manage subleases</span></span></span><i class="ti ti-chevron-right"></i></button>
+      <button class="menu-item" onclick="go('forum')"><span class="menu-left"><span class="menu-ico"><i class="ti ti-message-circle"></i></span><span><span class="menu-name">Housing Forum</span><span class="menu-desc">Ask and share with others</span></span></span><i class="ti ti-chevron-right"></i></button>
+    </div></div>
+    <div class="menu-group"><div class="menu-label">Preferences</div><div class="menu-list">
+      <button class="menu-item" onclick="go('alerts')"><span class="menu-left"><span class="menu-ico"><i class="ti ti-bell"></i></span><span><span class="menu-name">Saved Alerts</span><span class="menu-desc">Manage your alerts</span></span></span><i class="ti ti-chevron-right"></i></button>
+      <button class="menu-item" onclick="toast('Settings opened')"><span class="menu-left"><span class="menu-ico"><i class="ti ti-settings"></i></span><span><span class="menu-name">Settings</span><span class="menu-desc">Account and preferences</span></span></span><i class="ti ti-chevron-right"></i></button>
+      <button class="menu-item" onclick="toast('Help request started')"><span class="menu-left"><span class="menu-ico"><i class="ti ti-help"></i></span><span><span class="menu-name">Help & Support</span><span class="menu-desc">FAQs and contact</span></span></span><i class="ti ti-chevron-right"></i></button>
+    </div></div>
+    <div class="menu-group"><div class="menu-list"><button class="menu-item" onclick="toast('Signed out')"><span class="menu-left"><span class="menu-ico"><i class="ti ti-logout"></i></span><span class="menu-name" style="color:#A43A30">Sign out</span></span></button></div></div>
+    <div style="text-align:center;color:var(--muted);font-size:9px;margin:8px 0 18px">AbodeSLO by Team 1 - Agility</div>
+  </section>
+
+  <section class="screen" id="screen-sublease" aria-label="Sublease Portal">
+    <div class="back-title header-line"><button class="circle-btn soft" onclick="go('profile')"><i class="ti ti-chevron-left"></i></button><h1 class="small-title">Sublease Portal</h1></div>
+    <div class="sublease-card"><h3>Post a Summer Sublease</h3><p>Create a listing for your room, upload photos, add lease dates, and share it with Cal Poly students.</p><button class="wide-btn orange" onclick="toast('Sublease draft created')">Create Listing</button></div>
+    <div class="sublease-card"><h3>Available Subleases</h3><p><strong>Foothill Room - $1,050/mo.</strong><br>June 15 to August 31. Furnished, parking included, 0.7 mi from campus.</p><button class="wide-btn green" onclick="toast('Message sent to sublessor')">Message Student</button></div>
+  </section>
+
+  <section class="screen" id="screen-forum" aria-label="Housing Forum">
+    <div class="back-title header-line"><button class="circle-btn soft" onclick="go('profile')"><i class="ti ti-chevron-left"></i></button><h1 class="small-title">Housing Forum</h1></div>
+    <div class="form">
+      <div class="forum-card"><h4>Property Deal: 123-3 Higuera group lease?</h4><p>Anyone toured this place yet? Looking for honest reviews. 12 replies.</p></div>
+      <div class="forum-card"><h4>Sublease available - June to August</h4><p>Private room near campus. 4 replies.</p></div>
+      <div class="forum-card"><h4>Where to find furnished homes?</h4><p>Students are sharing leads and landlord notes. 8 replies.</p></div>
+      <button class="wide-btn orange" onclick="toast('New forum post started')">Start a Post</button>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-alerts" aria-label="Saved Alerts">
+    <div class="back-title header-line"><button class="circle-btn soft" onclick="go('profile')"><i class="ti ti-chevron-left"></i></button><h1 class="small-title">Saved Alerts</h1></div>
+    <div class="saved-alert"><div><h4>1BR under $1,200</h4><p>Near Cal Poly - instant alerts</p></div><div class="switch"></div></div>
+    <div class="saved-alert"><div><h4>3+ bed group house</h4><p>Foothill or Downtown - daily alerts</p></div><div class="switch"></div></div>
+  </section>
+
+  <nav class="nav" aria-label="Primary navigation">
+    <button class="nav-btn active" id="nav-home" onclick="go('home')"><i class="ti ti-home"></i><span>Home</span></button>
+    <button class="nav-btn" id="nav-explore" onclick="go('explore')"><i class="ti ti-compass"></i><span>Explore</span></button>
+    <button class="nav-btn" id="nav-favorites" onclick="go('favorites')"><i class="ti ti-heart"></i><span>Favorite</span></button>
+    <button class="nav-btn" id="nav-roommate" onclick="go('roommate')"><i class="ti ti-users"></i><span>Roommate</span></button>
+    <button class="nav-btn" id="nav-profile" onclick="go('profile')"><i class="ti ti-user"></i><span>Profile</span></button>
+  </nav>
+  <div class="toast" id="toast"></div>
+</main>
+<script>
+const listings = [
+  {id:1,name:'Albert Drive',address:'Albert Drive, SLO',distance:'0.4 mi from Cal Poly',beds:'3 bed - 2 bath',price:'$4,300',unit:'/mo',priceVal:4300,tags:['near','parking','threePlus','fall'],verified:true,img:'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=900&q=80',desc:'A clean group house close to campus with shared living space, parking, and a short walk to class. This is built for students who want a full house setup without being far from Cal Poly.'},
+  {id:2,name:'Murray Ave',address:'Murray Ave, SLO',distance:'0.6 mi from campus',beds:'4 bed - 2 bath',price:'$5,500',unit:'/mo',priceVal:5500,tags:['near','parking','threePlus','fall','pet'],verified:true,img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80',desc:'Large student-friendly house with a backyard, shared common areas, and enough room for a full roommate group.'},
+  {id:3,name:'Foothill Gardens',address:'1301 E Foothill Blvd',distance:'0.8 mi to campus',beds:'2 bed - 1 bath',price:'$3,500',unit:'/mo',priceVal:3500,tags:['near','furnished','parking','fall'],verified:true,img:'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80',desc:'Apartment near Foothill with on-site laundry, off-street parking, and quick access to grocery and coffee spots.'},
+  {id:4,name:'Highland Drive',address:'Highland Dr, SLO',distance:'1.2 mi from campus',beds:'2 bed - 1 bath',price:'$2,800',unit:'/mo',priceVal:2800,tags:['parking','pet','fall'],verified:false,img:'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=80',desc:'Quiet 2-bedroom unit with parking and a simple commute to Cal Poly.'},
+  {id:5,name:'Valencia Apartments',address:'555 Ramona Dr',distance:'0.9 mi - 13 min walk',beds:'3 bed - 2 bath',price:'From $1,000',unit:'/person',priceVal:3000,tags:['near','furnished','parking','threePlus','fall'],verified:true,img:'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=900&q=80',desc:'Student apartment community with roommate matching, study lounges, pool, and furniture options.'},
+  {id:6,name:'The SLO Student Living',address:'1050 E Foothill Blvd',distance:'0.7 mi - 13 min walk',beds:'Studio - Private Rooms',price:'From $579',unit:'/person',priceVal:579,tags:['near','furnished','parking','fall'],verified:true,img:'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=80',desc:'Private rooms and suites with individual leases, roommate matching, furnished options, and student-focused amenities.'}
+];
+const roommates = [
+  {id:1,initials:'EC',name:'Emily C.',sub:'Downtown SLO - 3rd yr',price:'$1,100/mo',bio:'Outgoing student looking for a clean, social roomie. Loves hiking and coffee.',color:'#EEDCC5',text:'#65452B'},
+  {id:2,initials:'DM',name:'David M.',sub:'Near Cal Poly',price:'$1,300/mo',bio:'Quiet professional, tidy and reliable. Looking for a calm study-friendly place.',color:'#D9E6D1',text:'#264A2F'},
+  {id:3,initials:'SA',name:'Sarah & Alex',sub:'Budget: $1,800/mo shared',price:'',bio:'Looking for a third roommate. Must love dogs and be okay with a social house.',color:'#DCECD5',text:'#335B38'}
+];
+let saved = JSON.parse(localStorage.getItem('abodeSaved') || '{"1":true,"2":true}');
+let homeFilter = 'all';
+let exploreFilter = 'all';
+let currentDetailId = 1;
+let lastListScreen = 'home';
+function saveState(){localStorage.setItem('abodeSaved', JSON.stringify(saved));}
+function moneyValue(l){return Number(l.priceVal||0)}
+function listingMatchesHome(l){
+  const q=(document.getElementById('homeSearch')?.value||'').toLowerCase();
+  const text=[l.name,l.address,l.distance,l.beds,l.desc].join(' ').toLowerCase().includes(q);
+  const f=homeFilter==='all'||(homeFilter==='under4k'&&moneyValue(l)<4000)||(homeFilter==='threePlus'&&l.tags.includes('threePlus'))||(homeFilter==='fall'&&l.tags.includes('fall'));
+  return text&&f;
+}
+function listingMatchesExplore(l){
+  const q=(document.getElementById('exploreSearch')?.value||'').toLowerCase();
+  const text=[l.name,l.address,l.distance,l.beds,l.desc].join(' ').toLowerCase().includes(q);
+  const f=exploreFilter==='all'||l.tags.includes(exploreFilter);
+  return text&&f;
+}
+function verifiedHTML(l){return l.verified?'<span class="verified"><i class="ti ti-check"></i>Verified listing</span>':''}
+function homeCard(l){return `<article class="home-card"><div class="hero-img" style="background-image:url('${l.img}')"><button class="heart ${saved[l.id]?'saved':''}" onclick="event.stopPropagation();toggleSave(${l.id})"><i class="ti ti-heart"></i></button></div><div class="home-card-body"><div class="listing-head"><div><h3 class="listing-name">${l.name}</h3><div class="meta"><i class="ti ti-map-pin"></i>${l.distance}</div></div><div class="price">${l.price}<span>${l.unit}</span></div></div><div class="meta" style="justify-content:flex-end;margin-top:-3px">${l.beds}</div><div class="badges">${verifiedHTML(l)}${l.verified?'<button class="linkish" onclick="event.stopPropagation();toast(\'Verified means landlord ID confirmed, address matched, and lease terms reviewed.\')">What does verified mean?</button>':''}</div><div class="actions"><button class="ghost-mini" onclick="event.stopPropagation();toggleSave(${l.id})">${saved[l.id]?'Saved':'Save'}</button><button class="view-more" onclick="openDetail(${l.id},'home')">View More</button></div></div></article>`}
+function gridCard(l){return `<article class="grid-card" onclick="openDetail(${l.id},'explore')"><div class="grid-img" style="background-image:url('${l.img}')"><button class="heart ${saved[l.id]?'saved':''}" onclick="event.stopPropagation();toggleSave(${l.id})"><i class="ti ti-heart"></i></button></div><div class="grid-body"><div class="grid-price">${l.price}<span>${l.unit}</span></div><div class="grid-name">${l.name}</div><div class="grid-meta">${l.beds}<br>${l.distance}</div>${verifiedHTML(l)}</div></article>`}
+function renderHome(){document.getElementById('homeFeed').innerHTML=listings.filter(listingMatchesHome).map(homeCard).join('')||'<div class="notice">No listings match that search yet. Try Explore or Rental Search.</div>'}
+function renderExplore(){const arr=listings.filter(listingMatchesExplore);document.getElementById('exploreGrid').innerHTML=arr.map(gridCard).join('');document.getElementById('exploreCount').textContent=arr.length;document.getElementById('exploreEmpty').style.display=arr.length?'none':'block'}
+function renderFavorites(){
+  const arr=listings.filter(l=>saved[l.id]);
+  document.getElementById('favoritesList').innerHTML=arr.map(l=>`<div class="photo-strip" onclick="openDetail(${l.id},'favorites')" style="background-image:url('${l.img}')"><button class="heart saved" onclick="event.stopPropagation();toggleSave(${l.id})"><i class="ti ti-heart"></i></button></div>`).join('');
+  document.getElementById('emptyFavs').style.display=arr.length?'none':'block';
+  document.getElementById('leaseSection').style.display=arr.length?'block':'none';
+}
+function renderRoommates(){document.getElementById('roommateCards').innerHTML=roommates.map(r=>`<div class="room-card"><div class="room-top"><div class="initial" style="background:${r.color};color:${r.text}">${r.initials}</div><div class="room-info"><div class="room-name">${r.name}</div><div class="room-sub">${r.sub}</div></div><div class="room-price">${r.price}</div></div><div class="room-bio">${r.bio}</div><button class="connect" onclick="connectRoommate(this)">Connect</button></div>`).join('')}
+function openDetail(id,from){currentDetailId=id;lastListScreen=from;const l=listings.find(x=>x.id===id);document.getElementById('detailImg').style.backgroundImage=`url('${l.img}')`;document.getElementById('detailName').textContent=l.name;document.getElementById('detailAddress').textContent=l.address;document.getElementById('detailDistance').textContent=l.distance;document.getElementById('detailPrice').innerHTML=`${l.price}<span>${l.unit}</span>`;document.getElementById('detailDesc').textContent=l.desc;document.getElementById('detailHeart').classList.toggle('saved',!!saved[id]);document.getElementById('messageBox').classList.remove('show');go('detail')}
+function toggleSave(id){saved[id]=!saved[id];saveState();renderHome();renderExplore();renderFavorites();if(currentDetailId===id){document.getElementById('detailHeart')?.classList.toggle('saved',!!saved[id])}toast(saved[id]?'Saved to Favorites':'Removed from Favorites')}
+function setHomeFilter(f,el){homeFilter=f;document.querySelectorAll('#homeChips .chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');renderHome()}
+function setExploreFilter(f,el){exploreFilter=f;document.querySelectorAll('#exploreChips .chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');renderExplore()}
+function applyRentalSearch(){exploreFilter='near';document.getElementById('exploreSearch').value='';go('explore');document.querySelectorAll('#exploreChips .chip').forEach(c=>c.classList.remove('active'));document.querySelector('#exploreChips .chip:nth-child(2)').classList.add('active');renderExplore();toast('Showing properties that match your search')}
+function showMessageBox(){document.getElementById('messageBox').classList.add('show');toast('Message thread opened')}
+function connectRoommate(btn){btn.textContent='Request Sent';btn.classList.add('sent');toast('Roommate request sent')}
+function signLease(){document.getElementById('signatureBox').textContent='Cal Poly Student';toast('Signature added')}
+function finalizeLease(){const signed=document.getElementById('signatureBox').textContent.includes('Cal Poly');toast(signed?'Lease submitted to landlord':'Tap the signature box first')}
+function saveProfile(){toast('Profile saved. Matches updated.');go('roommate')}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove('show'),2200)}
+function setNav(tab){document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));const id={home:'nav-home',explore:'nav-explore',favorites:'nav-favorites',roommate:'nav-roommate',profile:'nav-profile',rental:'nav-explore',detail:lastListScreen==='favorites'?'nav-favorites':'nav-explore','roommate-search':'nav-roommate',sublease:'nav-profile',forum:'nav-profile',alerts:'nav-profile'}[tab];if(id)document.getElementById(id).classList.add('active')}
+function go(tab){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-'+tab).classList.add('active');document.getElementById('screen-'+tab).scrollTop=0;setNav(tab);if(tab==='home')renderHome();if(tab==='explore')renderExplore();if(tab==='favorites')renderFavorites();if(tab==='roommate')renderRoommates()}
+renderHome();renderExplore();renderFavorites();renderRoommates();
+</script>
+</body>
+</html>
